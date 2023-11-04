@@ -4,7 +4,7 @@ using System.Diagnostics;
 using System.Security.Cryptography.X509Certificates;
 
 
-#nullable enable
+
 namespace Schurko.Foundation.Crypto
 {
   public class CertificateManager

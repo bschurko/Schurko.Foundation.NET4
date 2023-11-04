@@ -1,4 +1,4 @@
-﻿using Microsoft.Extensions.Hosting;
+﻿
 using Schurko.Foundation.Concurrent.WorkerPool;
 using Schurko.Foundation.Concurrent.WorkerPool.Models;
 using Schurko.Foundation.Scheduler.Interfaces;
@@ -36,14 +36,14 @@ namespace Schurko.Foundation.Scheduler.Scheduler
             return Task.Run(() =>
             {
         
-                if (job.JobAction == null)
+                if (job.GetJobAction() == null)
                 {
                     job.Exception = new Exception("JobAction delegate is null and cannot be executed.");
                     return;
                 }
                 else
                 {
-                    job.JobAction();
+                    job.GetJobAction()();
                 }
             });
         }

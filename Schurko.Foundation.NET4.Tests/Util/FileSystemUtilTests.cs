@@ -1,4 +1,5 @@
-﻿using Schurko.Foundation.Helpers;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Schurko.Foundation.Helpers;
 using Schurko.Foundation.Utils;
 using System;
 using System.Collections.Generic;

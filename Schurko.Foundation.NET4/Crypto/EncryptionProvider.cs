@@ -6,7 +6,7 @@ using System.Security.Cryptography.X509Certificates;
 using System.Text;
 
 
-#nullable enable
+
 namespace Schurko.Foundation.Crypto
 {
   public class EncryptionProvider

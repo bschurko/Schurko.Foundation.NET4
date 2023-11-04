@@ -8,8 +8,8 @@ namespace Schurko.Foundation.Data
 {
     public interface IConnectionString
     {
-        public string Name { get; set; }
-        public string Value { get; set; }
+        string Name { get; set; }
+        string Value { get; set; }
     }
     public class ConnectionString : IConnectionString
     {

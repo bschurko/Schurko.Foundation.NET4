@@ -1,12 +1,12 @@
 ﻿
-using Microsoft.Extensions.Logging;
+
 using Schurko.Foundation.Extensions;
 using Schurko.Foundation.Logging;
 using System;
 using System.Configuration;
 
 
-#nullable enable
+
 namespace Schurko.Foundation.Caching
 {
     public abstract class CacheSettings

@@ -1,4 +1,5 @@
-﻿using Schurko.Foundation.Messaging.RabbitMQ;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Schurko.Foundation.Messaging.RabbitMQ;
 using System;
 using System.Collections.Generic;
 using System.Linq;

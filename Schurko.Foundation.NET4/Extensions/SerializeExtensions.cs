@@ -8,7 +8,7 @@ using System.Xml;
 using System.Xml.Serialization;
 
 
-#nullable enable
+
 namespace Schurko.Foundation.Extensions
 {
     public static class SerializeExtensions

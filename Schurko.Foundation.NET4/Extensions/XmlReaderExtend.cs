@@ -3,7 +3,7 @@ using System.Xml;
 using System.Xml.XPath;
 
 
-#nullable enable
+
 namespace Schurko.Foundation.Extensions
 {
     public static class XmlReaderExtend

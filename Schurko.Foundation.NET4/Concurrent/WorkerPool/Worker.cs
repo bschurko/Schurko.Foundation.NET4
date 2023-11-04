@@ -1,12 +1,13 @@
 ﻿
-using Microsoft.Extensions.Logging;
+
 using Schurko.Foundation.Concurrent.WorkerPool.Models;
+using Schurko.Foundation.Logging;
 using System;
 using System.Threading;
 using System.Threading.Tasks;
 
 
-#nullable enable
+
 namespace Schurko.Foundation.Concurrent.WorkerPool
 {
     internal class Worker<T> : IWorker<T> where T : IJob
@@ -19,10 +20,10 @@ namespace Schurko.Foundation.Concurrent.WorkerPool
         private bool _backgroundTaskInitialized;
         private object _backgroundTaskSyncLock;
 
-        private ILoggerFactory loggerFactory = new LoggerFactory();
-        private ILogger? _logger;
+ 
+        private ILogger _logger;
 
-        private ILogger Logger => _logger ?? (_logger = loggerFactory.CreateLogger("AdministratorPool"));
+        private ILogger Logger => _logger ?? (_logger = Log.Logger);
 
         public Worker(Administrator<T> administrator)
         {
@@ -84,17 +85,17 @@ namespace Schurko.Foundation.Concurrent.WorkerPool
                         token.ThrowIfCancellationRequested();
 
                         //administrator give me the job.
-                        log.LogInformation("Waiting for the new job... blocking.....");
+                        log.LogInfo("Waiting for the new job... blocking.....");
                         var job = _administrator.GetNextJob(this);
                         token.ThrowIfCancellationRequested();
 
                         try
                         {
-                            log.LogInformation(string.Format("Working on job ID: '{0}'...", job.Id));
+                            log.LogInfo(string.Format("Working on job ID: '{0}'...", job.Id));
 
                             await _administrator.JobProcessorAsync(job);
 
-                            log.LogInformation(string.Format("job ID: '{0}' completed...", job.Id));
+                            log.LogInfo(string.Format("job ID: '{0}' completed...", job.Id));
                         }
                         catch (Exception ex)
                         {
@@ -104,13 +105,13 @@ namespace Schurko.Foundation.Concurrent.WorkerPool
                         finally
                         {
                             _administrator.AckJobComplete(job);
-                            log.LogInformation(string.Format("Notify job ID: '{0}' is completed...", job.Id));
+                            log.LogInfo(string.Format("Notify job ID: '{0}' is completed...", job.Id));
                         }
                     }
                 }
                 catch (OperationCanceledException)
                 {
-                    log.LogInformation(string.Format("Worker '{0}' terminated.", Id));
+                    log.LogInfo(string.Format("Worker '{0}' terminated.", Id));
                     throw;
                 }
 

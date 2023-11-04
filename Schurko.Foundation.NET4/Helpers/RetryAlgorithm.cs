@@ -2,7 +2,7 @@
 using System;
 
 
-#nullable enable
+
 namespace Schurko.Foundation.Utilities
 {
     public static class RetryAlgorithm

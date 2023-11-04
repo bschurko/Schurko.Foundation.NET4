@@ -1,5 +1,5 @@
 ﻿ 
-#nullable enable
+
 using Schurko;
 
 namespace Schurko.Foundation.Identity.Impersonation

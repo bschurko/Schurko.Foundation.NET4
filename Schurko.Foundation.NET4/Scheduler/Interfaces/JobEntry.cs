@@ -23,7 +23,16 @@ namespace Schurko.Foundation.Scheduler.Interfaces
         public string Id { get; private set; }
         public Exception Exception { get; set; }
 
-        public Action JobAction { get; set; }
-     
+        private Action jobAction;
+
+        public Action GetJobAction()
+        {
+            return jobAction;
+        }
+
+        public void SetJobAction(Action value)
+        {
+            jobAction = value;
+        }
     }
 }

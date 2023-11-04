@@ -12,14 +12,11 @@ Classes to encrypt data or objects. Additionally there are classes to manage cer
 A dapper helper class for executing stored procedures and raw SQL code.
 Plenty of extensions that wrap the core dapper library into one easy service.
 
-## Process Manager
-A process manager class for executing applications and tools.
-
 ## Hash Util
 Utility class for hashing data.
 
 ## Settings and Configuration
-Simplifies interaction with AppSettings.json and AppSetting.config.
+Simplifies interaction with AppSetting.config.
 
 ## File IO Utility Classes
 Utility classes that extend the current .NET file/IO classes for both directories and files.

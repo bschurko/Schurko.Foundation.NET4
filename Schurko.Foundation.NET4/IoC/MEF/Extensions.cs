@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 
 
-#nullable enable
+
 namespace Schurko.Foundation.IoC.MEF
 {
     public static class Extensions

@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 
 
-#nullable enable
+
 namespace Schurko.Foundation.Messaging.DbMsgQueue
 {
   public interface IMessageQueuePoolService

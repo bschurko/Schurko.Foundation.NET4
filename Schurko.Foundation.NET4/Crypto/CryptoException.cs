@@ -2,7 +2,7 @@
 using System;
 
 
-#nullable enable
+
 namespace Schurko.Foundation.Crypto
 {
   public class CryptoException : Exception

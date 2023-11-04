@@ -5,7 +5,7 @@ using System;
 using System.IO;
 
 
-#nullable enable
+
 namespace Schurko.Foundation.Messaging.Redis
 {
   public class RedisService
@@ -24,7 +24,8 @@ namespace Schurko.Foundation.Messaging.Redis
         //var config = new ConfigurationOptions();
         //config.AbortOnConnectFail = false;
  
-        this._redisConnection = ConnectionMultiplexer.Connect(string.Format("{0}:{1}", (object) hostName, (object) port), (TextWriter) null);
+        this._redisConnection = ConnectionMultiplexer.Connect(string.Format("{0}:{1}",
+            (object) hostName, (object) port), (TextWriter) null);
         this._db = this._redisConnection.GetDatabase(-1, (object) null);
         
         
@@ -46,7 +47,7 @@ namespace Schurko.Foundation.Messaging.Redis
         return this._db.StringSet(key, str, new TimeSpan?(), false, (When) 0, (CommandFlags) 0);
     }
 
-    public T? GetObjectData<T>(string key) where T : class => JsonConvert.DeserializeObject<T>(this._db.StringGet(key));
+    public T GetObjectData<T>(string key) where T : class => JsonConvert.DeserializeObject<T>(this._db.StringGet(key));
 
   }
 }

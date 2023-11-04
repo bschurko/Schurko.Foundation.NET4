@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 
 
-#nullable enable
+
 namespace Schurko.Foundation.Patterns
 {
   public interface IRepository<TEntity> where TEntity : class

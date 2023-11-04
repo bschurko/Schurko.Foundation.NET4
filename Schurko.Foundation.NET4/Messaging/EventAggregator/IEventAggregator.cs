@@ -2,7 +2,7 @@
 using System;
 
 
-#nullable enable
+
 namespace Schurko.Foundation.Messaging.EventAggregator
 {
   public interface IEventAggregator

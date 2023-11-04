@@ -2,7 +2,7 @@
 using System.Data;
 
 
-#nullable enable
+
 namespace Schurko.Foundation.Extensions
 {
     public static class DataSetExtensions

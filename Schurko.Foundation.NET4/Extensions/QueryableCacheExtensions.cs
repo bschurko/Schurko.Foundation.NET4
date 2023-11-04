@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 
 
-#nullable enable
+
 namespace Schurko.Foundation.Extensions
 {
     public static class QueryableCacheExtensions

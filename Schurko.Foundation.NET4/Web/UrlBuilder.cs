@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 
 
-#nullable enable
+
 namespace Schurko.Foundation.Web
 {
   public class UrlBuilder

@@ -10,7 +10,7 @@ using System.Linq;
 using System.Linq.Expressions;
 
 
-#nullable enable
+
 namespace Schurko.Foundation.IoC.MEF
 {
     public static class DependencyInjector

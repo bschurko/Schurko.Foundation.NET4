@@ -1,6 +1,6 @@
 ﻿
 
-#nullable enable
+
 
 
 namespace Schurko.Foundation.Extensions

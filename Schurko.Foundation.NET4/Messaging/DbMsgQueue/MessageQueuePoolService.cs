@@ -1,8 +1,9 @@
 ﻿
 using Dapper;
 using Microsoft.CSharp.RuntimeBinder;
-using Microsoft.Extensions.Logging;
+
 using Schurko.Foundation.Identity.Impersonation;
+using Schurko.Foundation.Logging;
 using Schurko.Foundation.Utilities;
 using System;
 using System.Collections.Generic;
@@ -13,20 +14,20 @@ using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 
 
-#nullable enable
+
 namespace Schurko.Foundation.Messaging.DbMsgQueue
 {
     public class MessageQueuePoolService : IMessageQueuePoolService
   {
-    private ILoggerFactory loggerFactory = (ILoggerFactory) new LoggerFactory();
-    private ILogger? _logger;
+ 
+    private ILogger _logger;
     private string _connectionString;
 
-    private ILogger Logger => this._logger ?? (this._logger = this.loggerFactory.CreateLogger("MsgQueueService"));
+    private ILogger Logger => this._logger ?? (this._logger = Log.Logger);
 
     public MessageQueuePoolService(string connectionString) => this._connectionString = connectionString;
 
-    public async Task<string?> InMessageQueueAsync(string identifier, string message, int lifeInQueueSeconds = 60, int maxLength = 7500)
+    public async Task<string> InMessageQueueAsync(string identifier, string message, int lifeInQueueSeconds = 60, int maxLength = 7500)
     {
       try
       {
@@ -109,7 +110,7 @@ namespace Schurko.Foundation.Messaging.DbMsgQueue
         p.Add("messageId", messageId);
         p.Add("OUTPUT", 0, DbType.Int32, ParameterDirection.Output);
 
-        List<object?> source = await this.StoredProcWithParamsDynamicAsync(MessageQueuePoolSprocs.DeleteMessage, p).ConfigureAwait(false);
+        List<object> source = await this.StoredProcWithParamsDynamicAsync(MessageQueuePoolSprocs.DeleteMessage, p).ConfigureAwait(false);
 
         if (p.Get<int>("OUTPUT") > 0)
             throw new Exception("Stored Procedure failed to delete queued messages by messageId.");
@@ -136,7 +137,7 @@ namespace Schurko.Foundation.Messaging.DbMsgQueue
             var p = new DynamicParameters();
             p.Add("identifier", identifier);
             p.Add("OUTPUT", 0, DbType.Int32, ParameterDirection.Output);
-            List<object?> source = await this.StoredProcWithParamsDynamicAsync(MessageQueuePoolSprocs.DeleteMessageByIdentifer, p).ConfigureAwait(false);
+            List<object> source = await this.StoredProcWithParamsDynamicAsync(MessageQueuePoolSprocs.DeleteMessageByIdentifer, p).ConfigureAwait(false);
 
             if (p.Get<int>("OUTPUT") > 0)
                 throw new Exception("Stored Procedure failed to delete queued messages by identifier.");

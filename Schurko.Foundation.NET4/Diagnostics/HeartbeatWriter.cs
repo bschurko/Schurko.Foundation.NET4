@@ -5,11 +5,12 @@ using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Text;
-using Microsoft.Extensions.Logging;
+
 using Schurko.Foundation.Identity.Impersonation;
+using Schurko.Foundation.Logging;
 using Schurko.Foundation.Utilities;
 
-namespace Schurko.Foundation.Helpers
+namespace Schurko.Foundation.NET4.Diagnostics
 {
     public interface IHeartbeatWriter
     {
@@ -23,9 +24,9 @@ namespace Schurko.Foundation.Helpers
         private readonly HeartbeatMode _heartbeatMode = HeartbeatMode.Disabled; // Default.
         private readonly IHeartbeatWriterProvider _writer;
 
-        private ILoggerFactory loggerFactory = new LoggerFactory();
-        private ILogger? _logger;
-        private ILogger Logger => _logger ?? (_logger = loggerFactory.CreateLogger("IHeartbeatWriter"));
+
+        private ILogger _logger;
+        private ILogger Logger => _logger ?? (_logger = Log.Logger);
 
 
         protected bool IsDisabled
@@ -82,9 +83,9 @@ namespace Schurko.Foundation.Helpers
 
     public class HeartbeatWriterProviderFactory
     {
-        private static ILoggerFactory loggerFactory = new LoggerFactory();
-        private static ILogger? _logger;
-        private static ILogger Logger => _logger ?? (_logger = loggerFactory.CreateLogger("IHeartbeatWriter"));
+
+        private static ILogger _logger;
+        private static ILogger Logger => _logger ?? (_logger = Log.Logger);
 
 
         public static IHeartbeatWriterProvider GetHeartbeatWriterProvider(HeartbeatMode mode)
@@ -98,13 +99,13 @@ namespace Schurko.Foundation.Helpers
                     return new HeartbeatFileWriterProvider();
                     break;
                 case HeartbeatMode.Disabled:
-                    Logger.LogInformation(string.Format(
+                    Logger.LogInfo(string.Format(
                             "Heartbeat Service is DISABLED for the machine: [{0}]",
                             Environment.MachineName));
                     return null;
                     break;
                 default:
-                    Logger.LogInformation(string.Format(
+                    Logger.LogInfo(string.Format(
                             "encountered an unknown Heartbeat Service for the machine: [{0}]",
                             Environment.MachineName));
                     return null;
@@ -122,9 +123,9 @@ namespace Schurko.Foundation.Helpers
     {
         private readonly ICredentialProvider _credentialProvider;
 
-        private ILoggerFactory loggerFactory = new LoggerFactory();
-        private ILogger? _logger;
-        private ILogger Logger => _logger ?? (_logger = loggerFactory.CreateLogger("IHeartbeatWriter"));
+
+        private ILogger _logger;
+        private ILogger Logger => _logger ?? (_logger = Log.Logger);
 
         public HeartbeatFileWriterProvider()
         {
@@ -158,7 +159,7 @@ namespace Schurko.Foundation.Helpers
                 Trace.WriteLine(logMessage);
                 Debug.WriteLine(logMessage);
 
-                Logger.LogInformation(logMessage);
+                Logger.LogInfo(logMessage);
             }
             catch (Exception ex)
             {
@@ -171,9 +172,9 @@ namespace Schurko.Foundation.Helpers
 
     public class HeartbeatLogWriterProvider : IHeartbeatWriterProvider
     {
-        private ILoggerFactory loggerFactory = new LoggerFactory();
-        private ILogger? _logger;
-        private ILogger Logger => _logger ?? (_logger = loggerFactory.CreateLogger("IHeartbeatWriter"));
+
+        private ILogger _logger;
+        private ILogger Logger => _logger ?? (_logger = Log.Logger);
 
 
         public HeartbeatLogWriterProvider()
@@ -191,7 +192,7 @@ namespace Schurko.Foundation.Helpers
                 Trace.WriteLine(logMessage);
                 Debug.WriteLine(logMessage);
 
-                Logger.LogInformation(logMessage);
+                Logger.LogInfo(logMessage);
             }
             catch (Exception ex)
             {

@@ -1,4 +1,5 @@
 ﻿
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Schurko.Foundation.Messaging.EventAggregator;
 using Schurko.Foundation.Tests.Implementations;
 using Schurko.Foundation.Tests.Interfaces;

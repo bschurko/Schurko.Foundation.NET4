@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Newtonsoft.Json;
 
 using Schurko.Foundation.Messaging.Redis;
 using Schurko.Foundation.Tests.Implementations;

@@ -5,9 +5,6 @@ using System.Runtime.CompilerServices;
 using System.Security.Cryptography;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
-
-
-#nullable enable
 namespace Schurko.Foundation.Crypto
 {
   public class RsaCryptoProvider
@@ -72,7 +69,7 @@ namespace Schurko.Foundation.Crypto
       int length = data.Length;
       if (length > num)
       {
-        DefaultInterpolatedStringHandler interpolatedStringHandler = new DefaultInterpolatedStringHandler(83, 2);
+        InterpolatedStringHandler interpolatedStringHandler = new InterpolatedStringHandler(83, 2);
         interpolatedStringHandler.AppendLiteral("RsaEncryption can't be used on data larger than ");
         interpolatedStringHandler.AppendFormatted<int>(num);
         interpolatedStringHandler.AppendLiteral(" bytes, currently encrypting ");
@@ -87,7 +84,7 @@ namespace Schurko.Foundation.Crypto
     {
       if (!this._certificate.HasPrivateKey || this._certificate.PrivateKey == null)
       {
-        DefaultInterpolatedStringHandler interpolatedStringHandler = new DefaultInterpolatedStringHandler(72, 1);
+        InterpolatedStringHandler interpolatedStringHandler = new InterpolatedStringHandler(72, 1);
         interpolatedStringHandler.AppendLiteral("The ");
         interpolatedStringHandler.AppendFormatted<X500DistinguishedName>(this._certificate.SubjectName);
         interpolatedStringHandler.AppendLiteral(" certificate does not contain a private key, decryption not possible");
@@ -153,4 +150,42 @@ namespace Schurko.Foundation.Crypto
       return data;
     }
   }
+
+ 
+    public ref struct  InterpolatedStringHandler
+    {
+        // Storage for the built-up string
+        StringBuilder builder;
+
+        public InterpolatedStringHandler(int literalLength, int formattedCount)
+        {
+            builder = new StringBuilder(literalLength);
+            Console.WriteLine($"\tliteral length: {literalLength}, formattedCount: {formattedCount}");
+        }
+
+        public void AppendLiteral(string s)
+        {
+            Console.WriteLine($"\tAppendLiteral called: {{{s}}}");
+
+            builder.Append(s);
+            Console.WriteLine($"\tAppended the literal string");
+        }
+
+        public void AppendFormatted<T>(T t)
+        {
+            Console.WriteLine($"\tAppendFormatted called: {{{t}}} is of type {typeof(T)}");
+
+            builder.Append(t?.ToString());
+            Console.WriteLine($"\tAppended the formatted object");
+        }
+
+        public string ToStringAndClear()
+        {
+            string result = builder.ToString();
+   
+            return result;
+        }
+
+        internal string GetFormattedText() => builder.ToString();
+    }
 }

@@ -2,7 +2,7 @@
 using System.IO;
 
 
-#nullable enable
+
 namespace Schurko.Foundation.Extensions
 {
     public static class StreamExtensions

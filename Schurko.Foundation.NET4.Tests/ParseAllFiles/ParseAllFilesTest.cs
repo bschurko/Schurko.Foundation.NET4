@@ -1,7 +1,9 @@
-﻿using Schurko.Foundation.Utilities;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Schurko.Foundation.Utilities;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;

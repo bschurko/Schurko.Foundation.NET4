@@ -1,10 +1,10 @@
 ﻿
-using Microsoft.EntityFrameworkCore;
+
 using System.Collections.Generic;
 using System.Linq;
 
 
-#nullable enable
+
 namespace Schurko.Foundation.Patterns
 {
   public abstract class Repository<TEntity> : IRepository<TEntity> where TEntity : class

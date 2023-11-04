@@ -5,6 +5,13 @@ VisualStudioVersion = 17.7.34202.233
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Schurko.Foundation.NET4", "Schurko.Foundation.NET4\Schurko.Foundation.NET4.csproj", "{A7893B0E-8CC5-48FA-9D08-3068A9A0DBCB}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Schurko.Foundation.NET4.Tests", "Schurko.Foundation.NET4.Tests\Schurko.Foundation.NET4.Tests.csproj", "{31DC1DF5-32F1-4943-8D97-2ECEFCDECDC3}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Assets", "Assets", "{C531C10A-6BE4-4181-8A27-9A397B9F0F47}"
+	ProjectSection(SolutionItems) = preProject
+		Schurko.Foundation.NET4\Assets\InMemoryMessageQueue.sql = Schurko.Foundation.NET4\Assets\InMemoryMessageQueue.sql
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +22,10 @@ Global
 		{A7893B0E-8CC5-48FA-9D08-3068A9A0DBCB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A7893B0E-8CC5-48FA-9D08-3068A9A0DBCB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A7893B0E-8CC5-48FA-9D08-3068A9A0DBCB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{31DC1DF5-32F1-4943-8D97-2ECEFCDECDC3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{31DC1DF5-32F1-4943-8D97-2ECEFCDECDC3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{31DC1DF5-32F1-4943-8D97-2ECEFCDECDC3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{31DC1DF5-32F1-4943-8D97-2ECEFCDECDC3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -2,7 +2,7 @@
 using System.Globalization;
 
 
-#nullable enable
+
 namespace Schurko.Foundation.Extensions
 {
     public static class DateTimeExtensions

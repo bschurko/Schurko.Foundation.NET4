@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using System.Text;
 
 
-#nullable enable
+
 namespace Schurko.Foundation.Messaging.RabbitMQ
 {
   public class RabbitMQService

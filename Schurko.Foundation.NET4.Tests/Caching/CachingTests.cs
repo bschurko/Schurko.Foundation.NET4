@@ -1,4 +1,5 @@
-﻿using Schurko.Foundation.Caching;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Schurko.Foundation.Caching;
 using Schurko.Foundation.Tests.Implementations;
 using System;
 using System.Collections.Generic;

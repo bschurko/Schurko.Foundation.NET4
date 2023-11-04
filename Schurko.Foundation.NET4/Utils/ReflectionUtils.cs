@@ -1,4 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore.Metadata.Internal;
+﻿ 
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -24,7 +24,7 @@ namespace Schurko.Foundation.Utils
         {
             PropertyInfo info = null;
 
-            info = (PropertyInfo?)model.GetType().GetProperty(key).GetValue(model, null);
+            info = (PropertyInfo)model.GetType().GetProperty(key).GetValue(model, null);
 
             return info;
         }

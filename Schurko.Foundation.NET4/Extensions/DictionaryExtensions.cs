@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 
 
-#nullable enable
+
 namespace Schurko.Foundation.Extensions
 {
     public static class DictionaryExtensions
@@ -56,19 +56,5 @@ namespace Schurko.Foundation.Extensions
             return new ReadOnlyDictionary<object, object>(sourceDictionary1).ToDictionary(k => k.Key, v => v.Value);
         }
 
-        //public static TValue GetValue<TKey, TValue>(
-        //  this IDictionary<TKey, TValue> sourceDictionary,
-        //  TKey key,
-        //  TValue defaultValue = null)
-        //{
-        //  TValue obj;
-        //  return !sourceDictionary.TryGetValue(key, out obj) ? defaultValue : obj;
-        //}
-
-        public static IDictionary<TKey, TValue> ReadOnly<TKey, TValue>(
-          this IDictionary<TKey, TValue> sourceDictionary)
-        {
-            return new ReadOnlyDictionary<TKey, TValue>(sourceDictionary);
-        }
     }
 }

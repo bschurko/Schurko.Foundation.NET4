@@ -2,7 +2,7 @@
 using System.Text;
 
 
-#nullable enable
+
 namespace Schurko.Foundation.Extensions.IO
 {
   public static class Extensions

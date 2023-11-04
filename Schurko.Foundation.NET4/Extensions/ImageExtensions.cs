@@ -6,7 +6,7 @@ using System.Linq;
 using System.Reflection;
 
 
-#nullable enable
+
 namespace Schurko.Foundation.Extensions
 {
     public static class ImageExtensions

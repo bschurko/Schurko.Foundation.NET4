@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Globalization;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
@@ -57,7 +58,7 @@ namespace Schurko.Foundation.Utilities
         /// <param name="spaceCount">The number of spaces to indent.</param>
         public static string Indent(this string text, int spaceCount)
         {
-            string indentation = new(' ', spaceCount);
+            string indentation = new string(' ', spaceCount);
             string newLineReplacement = Environment.NewLine + indentation;
             return indentation + text.Replace(Environment.NewLine, newLineReplacement);
         }

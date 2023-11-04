@@ -1,4 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿ 
 using Schurko.Foundation.Concurrent.WorkerPool.Models;
 using Schurko.Foundation.Patterns;
 using Schurko.Foundation.Tests.Implementations;
@@ -9,9 +9,11 @@ using System.Text;
 using System.Threading.Tasks;
 using Schurko.Foundation.Scheduler.Scheduler;
 using Schurko.Foundation.Scheduler.Interfaces;
-using System.Threading.Tasks.Dataflow;
+ 
 using Schurko.Foundation.Messaging.Redis;
-using Microsoft.AspNetCore.Mvc.Filters;
+ 
+using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System.Threading;
 
 namespace Schurko.Foundation.Tests.Schedule
 {
@@ -26,13 +28,13 @@ namespace Schurko.Foundation.Tests.Schedule
             Scheduler.Scheduler.Scheduler scheduler = new Scheduler.Scheduler.Scheduler(new ScheduleSettings());
             while (true)
             {
-                IJob job = new JobEntry("Input", (int)new Random().NextInt64(0, 100));
+                IJob job = new JobEntry("Input", (int)new Random().Next(0, 100));
                 object syncLock = new object();
                 string hostName = "localhost";
                 string port = "6379";
                 RedisService service = new RedisService(hostName, port);
                  
-                job.JobAction = async () => {
+                job.SetJobAction(async () => {
 
                     Monitor.Enter(syncLock);
                    
@@ -52,7 +54,7 @@ namespace Schurko.Foundation.Tests.Schedule
                     Monitor.Exit(syncLock);
 
                     await Task.Delay(5000);
-                };
+                });
 
                 scheduler.SubmitJob(job);
             }
@@ -60,10 +62,13 @@ namespace Schurko.Foundation.Tests.Schedule
         }
     }
 
-   
+
 
     public class ScheduleSettings : IScheduleSettings
     {
+        public TimeSpan MaxDifference => TimeSpan.FromMilliseconds(500);
+        public TimeSpan MaxTimeout => TimeSpan.FromMilliseconds(0);
+        public bool HideExceptions => false;
 
     }
 }

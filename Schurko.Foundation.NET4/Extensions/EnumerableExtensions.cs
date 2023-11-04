@@ -6,7 +6,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 
 
-#nullable enable
+
 namespace Schurko.Foundation.Extensions
 {
     public static class EnumerableExtensions

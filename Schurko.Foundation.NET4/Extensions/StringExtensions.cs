@@ -4,7 +4,7 @@ using System.Collections;
 using System.Text;
 
 
-#nullable enable
+
 namespace Schurko.Foundation.Extensions
 {
     public static class StringExtensions

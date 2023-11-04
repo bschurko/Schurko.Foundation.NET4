@@ -2,7 +2,7 @@
 using System;
 
 
-#nullable enable
+
 namespace Schurko.Foundation.Identity.Impersonation
 {
     public class SecurityImpersonation : IDisposable

@@ -3,7 +3,7 @@ using System;
 using System.ComponentModel.Composition.Primitives;
 
 
-#nullable enable
+
 namespace Schurko.Foundation.IoC.MEF
 {
     public class ResolveEntityException : Exception

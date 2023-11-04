@@ -5,7 +5,7 @@ using System.Reflection;
 using System.Text;
 
 
-#nullable enable
+
 namespace Schurko.Foundation.Extensions
 {
     public static class ExceptionExtensions

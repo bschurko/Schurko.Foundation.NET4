@@ -99,32 +99,32 @@ namespace Schurko.Foundation.Utilities
             }
         }
 
-        /// <summary>
-        /// Swaps two indexes in the array.
-        /// </summary>
-        /// <typeparam name="T">The type of the elements in the array.</typeparam>
-        /// <param name="array">The array in which to swap two elements.</param>
-        /// <param name="index1">The index of the first element.</param>
-        /// <param name="index2">The index of the second element.</param>
-        public static void Swap<T>(this T[] array, int index1, int index2)
-        {
-            Util.Swap(ref array[index1], ref array[index2]);
-        }
+        ///// <summary>
+        ///// Swaps two indexes in the array.
+        ///// </summary>
+        ///// <typeparam name="T">The type of the elements in the array.</typeparam>
+        ///// <param name="array">The array in which to swap two elements.</param>
+        ///// <param name="index1">The index of the first element.</param>
+        ///// <param name="index2">The index of the second element.</param>
+        //public static void Swap<T>(this T[] array, int index1, int index2)
+        //{
+        //    Util.Swap(ref array[index1], ref array[index2]);
+        //}
 
-        /// <summary>
-        /// Swaps two rows in the array.
-        /// </summary>
-        /// <typeparam name="T">The type of the elements in the array.</typeparam>
-        /// <param name="array">The array in which to swap two rows.</param>
-        /// <param name="row1">First row.</param>
-        /// <param name="row2">Second row.</param>
-        public static void SwapRow<T>(this T[,] array, int row1, int row2)
-        {
-            for (int i = array.GetLength(1) - 1; i >= 0; --i)
-            {
-                Util.Swap(ref array[row1, i], ref array[row2, i]);
-            }
-        }
+        ///// <summary>
+        ///// Swaps two rows in the array.
+        ///// </summary>
+        ///// <typeparam name="T">The type of the elements in the array.</typeparam>
+        ///// <param name="array">The array in which to swap two rows.</param>
+        ///// <param name="row1">First row.</param>
+        ///// <param name="row2">Second row.</param>
+        //public static void SwapRow<T>(this T[,] array, int row1, int row2)
+        //{
+        //    for (int i = array.GetLength(1) - 1; i >= 0; --i)
+        //    {
+        //        Util.Swap(ref array[row1, i], ref array[row2, i]);
+        //    }
+        //}
 
         private class ArrayTraverse
         {

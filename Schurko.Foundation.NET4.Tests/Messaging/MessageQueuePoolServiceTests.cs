@@ -1,6 +1,8 @@
 ﻿using System;
+using System.Configuration;
+using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.Extensions.Configuration;
+ 
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Schurko.Foundation.Messaging.DbMsgQueue;
 using Schurko.Foundation.Utilities;
@@ -106,8 +108,7 @@ namespace Schurko.Foundation.Tests.Messaging
 
         public MessageQueuePoolService GetMessageQueuePoolService()
         {
-            var config = StaticConfigurationManager.GetConfiguration();
-            var connStr = config.GetConnectionString("InMemDb");
+            var connStr = ConfigurationManager.ConnectionStrings["InMemDb"].ConnectionString;
             var service = new MessageQueuePoolService(connStr);
             return service;
         }

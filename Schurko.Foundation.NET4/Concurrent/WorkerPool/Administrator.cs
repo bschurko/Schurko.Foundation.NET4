@@ -1,6 +1,5 @@
 ﻿
 
-using Microsoft.Extensions.Logging;
 
 using Schurko.Foundation.Concurrent.WorkerPool.Models;
 using Schurko.Foundation.Logging;
@@ -12,7 +11,7 @@ using System.Threading;
 using System.Threading.Tasks;
 
 
-#nullable enable
+
 namespace Schurko.Foundation.Concurrent.WorkerPool
 {
     /// <summary>
@@ -34,11 +33,11 @@ namespace Schurko.Foundation.Concurrent.WorkerPool
 
         private readonly ManualResetEventSlim _submitJobLock;
 
-        private ILoggerFactory loggerFactory = new LoggerFactory();
-        private ILogger? _logger;
+      
+        private ILogger _logger;
         private string _connectionString;
 
-        private ILogger Logger => _logger ?? (_logger = loggerFactory.CreateLogger("AdministratorPool"));
+        private ILogger Logger => _logger ?? (_logger = Log.Logger);
 
         protected Administrator()
         {
@@ -67,10 +66,10 @@ namespace Schurko.Foundation.Concurrent.WorkerPool
         public void SubmitJob(T job)
         {
             _submitJobLock.Wait();
-            Logger.LogInformation(string.Format("Submitting job({0})....", job.Id));
+            Logger.LogInfo(string.Format("Submitting job({0})....", job.Id));
             _jobs.Enqueue(job);
             _jobSemaphore.Release();
-            Logger.LogInformation(string.Format("Submitting job({0}) has been submitted...", job.Id));
+            Logger.LogInfo(string.Format("Submitting job({0}) has been submitted...", job.Id));
         }
 
         /// <summary>
@@ -78,9 +77,9 @@ namespace Schurko.Foundation.Concurrent.WorkerPool
         /// </summary>
         public void AttachWorker()
         {
-            Logger.LogInformation(string.Format("Attaching worker..."));
+            Logger.LogInfo(string.Format("Attaching worker..."));
             var worker = new Worker<T>(this);
-            Logger.LogInformation(string.Format("Worker '{0}' created.", worker.Id));
+            Logger.LogInfo(string.Format("Worker '{0}' created.", worker.Id));
             if (!_workers.TryAdd(worker.Id, worker))
             {
                 if (!_workers.TryAdd(worker.Id, worker))
@@ -88,9 +87,9 @@ namespace Schurko.Foundation.Concurrent.WorkerPool
             }
 
             worker.Start();
-            Logger.LogInformation(string.Format("Worker '{0}' started.", worker.Id));
+            Logger.LogInfo(string.Format("Worker '{0}' started.", worker.Id));
             Interlocked.Increment(ref _noOfWorker);
-            Logger.LogInformation(string.Format("{0} of workers reports to administrator", _noOfWorker));
+            Logger.LogInfo(string.Format("{0} of workers reports to administrator", _noOfWorker));
         }
 
         /// <summary>
@@ -151,8 +150,8 @@ namespace Schurko.Foundation.Concurrent.WorkerPool
         /// </summary>
         public virtual async void Dispose()
         {
-            Logger.LogInformation("administrator is disposing....");
-            Logger.LogInformation("Stopping Job administrator....");
+            Logger.LogInfo("administrator is disposing....");
+            Logger.LogInfo("Stopping Job administrator....");
 
             _cancellationTokenSource.Cancel();
             _jobSemaphore.Release(_noOfWorker);
@@ -161,8 +160,8 @@ namespace Schurko.Foundation.Concurrent.WorkerPool
 
             await Task.WhenAll(workerWaitForCompleteTasks).ContinueWith(task =>
             {
-                Logger.LogInformation("Waiting workers to finish job....");
-                Logger.LogInformation("Job administrator Stopped....");
+                Logger.LogInfo("Waiting workers to finish job....");
+                Logger.LogInfo("Job administrator Stopped....");
             });
 
             _jobSemaphore.Dispose();

@@ -2,6 +2,7 @@
 
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using System.Data;
 using System.Globalization;
 using System.IO;
@@ -9,9 +10,8 @@ using System.Runtime.CompilerServices;
 using System.Security.Cryptography;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
+using System.Web.Script.Serialization;
 
-
-#nullable enable
 namespace Schurko.Foundation.Crypto.Cryptography
 {
     public static class Crypto
@@ -558,61 +558,7 @@ namespace Schurko.Foundation.Crypto.Cryptography
             return true;
         }
 
-        public static bool EncryptUserID(int retailerID, int userID, out string encUserID)
-        {
-            DefaultInterpolatedStringHandler interpolatedStringHandler = new DefaultInterpolatedStringHandler(1, 2);
-            interpolatedStringHandler.AppendFormatted(retailerID);
-            interpolatedStringHandler.AppendLiteral("$");
-            interpolatedStringHandler.AppendFormatted(userID);
-            return Encrypt(interpolatedStringHandler.ToStringAndClear(), 1, out encUserID);
-        }
-
-        public static bool DecryptUserID(string encUserID, out int retailerID, out int userID)
-        {
-            retailerID = 0;
-            userID = 0;
-            try
-            {
-                string strEncrypted;
-                if (!Decrypt(encUserID, 1, out strEncrypted))
-                    return false;
-                retailerID = Convert.ToInt32(strEncrypted.Split('$')[0]);
-                userID = Convert.ToInt32(strEncrypted.Split('$')[1]);
-                return true;
-            }
-            catch (Exception ex)
-            {
-                return false;
-            }
-        }
-
-        public static bool EncryptAlbumID(int retailerID, int albumID, out string encAlbumID)
-        {
-            DefaultInterpolatedStringHandler interpolatedStringHandler = new DefaultInterpolatedStringHandler(1, 2);
-            interpolatedStringHandler.AppendFormatted(retailerID);
-            interpolatedStringHandler.AppendLiteral("$");
-            interpolatedStringHandler.AppendFormatted(albumID);
-            return Encrypt(interpolatedStringHandler.ToStringAndClear(), 3, out encAlbumID);
-        }
-
-        public static bool DecryptAlbumID(string encAlbumID, out int retailerID, out int albumID)
-        {
-            retailerID = 0;
-            albumID = 0;
-            try
-            {
-                string strEncrypted;
-                if (!Decrypt(encAlbumID, 3, out strEncrypted))
-                    return false;
-                retailerID = Convert.ToInt32(strEncrypted.Split('$')[0]);
-                albumID = Convert.ToInt32(strEncrypted.Split('$')[1]);
-                return true;
-            }
-            catch (Exception ex)
-            {
-                return false;
-            }
-        }
+    
 
         public static bool EncryptMediaID(
           int retailerID,
@@ -701,105 +647,10 @@ namespace Schurko.Foundation.Crypto.Cryptography
             }
         }
 
-        public static bool EncryptShareID(int retailerID, int shareID, out string encShareID)
-        {
-            DefaultInterpolatedStringHandler interpolatedStringHandler = new DefaultInterpolatedStringHandler(1, 2);
-            interpolatedStringHandler.AppendFormatted(retailerID);
-            interpolatedStringHandler.AppendLiteral("$");
-            interpolatedStringHandler.AppendFormatted(shareID);
-            return Encrypt(interpolatedStringHandler.ToStringAndClear(), 8, out encShareID);
-        }
 
-        public static bool DecryptShareID(string encShareID, out int retailerID, out int shareID)
-        {
-            retailerID = 0;
-            shareID = 0;
-            try
-            {
-                string strEncrypted;
-                if (!Decrypt(encShareID, 8, out strEncrypted))
-                    return false;
-                retailerID = Convert.ToInt32(strEncrypted.Split('$')[0]);
-                shareID = Convert.ToInt32(strEncrypted.Split('$')[1]);
-                return true;
-            }
-            catch (Exception ex)
-            {
-                return false;
-            }
-        }
 
-        public static bool EncryptProjectID(int retailerID, int projectID, out string encProjectID)
-        {
-            encProjectID = null;
-            try
-            {
-                DefaultInterpolatedStringHandler interpolatedStringHandler = new DefaultInterpolatedStringHandler(1, 2);
-                interpolatedStringHandler.AppendFormatted(retailerID);
-                interpolatedStringHandler.AppendLiteral("$");
-                interpolatedStringHandler.AppendFormatted(projectID);
-                return Encrypt(interpolatedStringHandler.ToStringAndClear(), 10, out encProjectID);
-            }
-            catch (Exception ex)
-            {
-                return false;
-            }
-        }
 
-        public static bool DecryptProjectID(string encProjectID, out int retailerID, out int projectID)
-        {
-            retailerID = 0;
-            projectID = 0;
-            try
-            {
-                string strEncrypted;
-                if (!Decrypt(encProjectID, 10, out strEncrypted))
-                    return false;
-                retailerID = Convert.ToInt32(strEncrypted.Split('$')[0]);
-                projectID = Convert.ToInt32(strEncrypted.Split('$')[1]);
-                return true;
-            }
-            catch (Exception ex)
-            {
-                return false;
-            }
-        }
 
-        public static bool EncryptStoreID(int retailerID, int storeID, out string encStoreID)
-        {
-            encStoreID = null;
-            try
-            {
-                DefaultInterpolatedStringHandler interpolatedStringHandler = new DefaultInterpolatedStringHandler(1, 2);
-                interpolatedStringHandler.AppendFormatted(retailerID);
-                interpolatedStringHandler.AppendLiteral("$");
-                interpolatedStringHandler.AppendFormatted(storeID);
-                return Encrypt(interpolatedStringHandler.ToStringAndClear(), 9, out encStoreID);
-            }
-            catch (Exception ex)
-            {
-                return false;
-            }
-        }
-
-        public static bool DecryptStoreID(string encStoreID, out int retailerID, out int storeID)
-        {
-            retailerID = 0;
-            storeID = 0;
-            try
-            {
-                string strEncrypted;
-                if (!Decrypt(encStoreID, 9, out strEncrypted))
-                    return false;
-                retailerID = Convert.ToInt32(strEncrypted.Split('$')[0]);
-                storeID = Convert.ToInt32(strEncrypted.Split('$')[1]);
-                return true;
-            }
-            catch (Exception ex)
-            {
-                return false;
-            }
-        }
 
         public static bool EncryptCreditCardNum(string creditCardNum, out string encCreditCardNum)
         {
@@ -827,60 +678,7 @@ namespace Schurko.Foundation.Crypto.Cryptography
             }
         }
 
-        public static bool EncryptOrderPullerSessionID(int labID, out string sessionID)
-        {
-            DefaultInterpolatedStringHandler interpolatedStringHandler = new DefaultInterpolatedStringHandler(1, 2);
-            interpolatedStringHandler.AppendFormatted(labID);
-            interpolatedStringHandler.AppendLiteral("$");
-            interpolatedStringHandler.AppendFormatted(DateTime.Now);
-            return Encrypt(interpolatedStringHandler.ToStringAndClear(), 3, out sessionID);
-        }
-
-        public static bool EncryptOrderPullerSessionID(int labID, int version, out string sessionID)
-        {
-            DefaultInterpolatedStringHandler interpolatedStringHandler = new DefaultInterpolatedStringHandler(2, 3);
-            interpolatedStringHandler.AppendFormatted(labID);
-            interpolatedStringHandler.AppendLiteral("$");
-            interpolatedStringHandler.AppendFormatted(version);
-            interpolatedStringHandler.AppendLiteral("$");
-            interpolatedStringHandler.AppendFormatted(DateTime.Now);
-            return Encrypt(interpolatedStringHandler.ToStringAndClear(), 3, out sessionID);
-        }
-
-        public static bool DecryptOrderPullerSessionID(
-          string sessionID,
-          out int labID,
-          out int? version,
-          out DateTime sessionStart)
-        {
-            labID = 0;
-            version = new int?();
-            sessionStart = DateTime.MinValue;
-            try
-            {
-                string strEncrypted;
-                if (!Decrypt(sessionID, 3, out strEncrypted))
-                    return false;
-                string[] strArray = strEncrypted.Split('$');
-                if (strArray.Length == 2)
-                {
-                    labID = Convert.ToInt32(strArray[0]);
-                    sessionStart = DateTime.Parse(strArray[1]);
-                }
-                else
-                {
-                    labID = Convert.ToInt32(strArray[0]);
-                    version = new int?(Convert.ToInt32(strArray[1]));
-                    sessionStart = DateTime.Parse(strArray[2]);
-                }
-                return true;
-            }
-            catch (Exception ex)
-            {
-                return false;
-            }
-        }
-
+    
         public static bool EncryptOrderItemID(
           int retailerID,
           int orderItemID,
@@ -912,49 +710,7 @@ namespace Schurko.Foundation.Crypto.Cryptography
         {
             return Decrypt(EncryptIndex.OrderItemID, encOrderItemID, out retailerID, out orderItemID);
         }
-
-        public static string EncryptDictionary(IDictionary dict) => EncryptDictionary(dict, string.Empty);
-
-        public static string EncryptDictionary(IDictionary dict, string identifier)
-        {
-            Type type = typeof(double);
-            StringBuilder stringBuilder = new StringBuilder();
-            DefaultInterpolatedStringHandler interpolatedStringHandler;
-            foreach (DictionaryEntry dictionaryEntry in dict)
-            {
-                if (dictionaryEntry.Value == null)
-                {
-                    interpolatedStringHandler = new DefaultInterpolatedStringHandler(20, 2);
-                    interpolatedStringHandler.AppendLiteral("Null key or value: ");
-                    interpolatedStringHandler.AppendFormatted(dictionaryEntry.Key);
-                    interpolatedStringHandler.AppendLiteral(",");
-                    interpolatedStringHandler.AppendFormatted<object>(dictionaryEntry.Value);
-                    throw new NoNullAllowedException(interpolatedStringHandler.ToStringAndClear());
-                }
-                string str1 = dictionaryEntry.Key.ToString();
-                string str2 = dictionaryEntry.Value.GetType() == type ? ((double)dictionaryEntry.Value).ToString(NumberFormatInfo.InvariantInfo) : dictionaryEntry.Value.ToString();
-                if (str1.IndexOf('\u0001') != -1)
-                    throw new InvalidOperationException("Key contains delimeter character, which is not allowed");
-                if (str2.IndexOf('\u0001') != -1)
-                    throw new InvalidOperationException("Value contains delimeter character, which is not allowed");
-                stringBuilder.Append('\u0001');
-                stringBuilder.Append(str1);
-                stringBuilder.Append('\u0001');
-                stringBuilder.Append(str2);
-            }
-            string str = dict.Count == 0 ? string.Empty : stringBuilder.ToString().Substring(1);
-            string strEncrypted;
-            if (!Encrypt(ComputeMac(str + "\u0001" + identifier, 6) + str, 5, out strEncrypted))
-            {
-                interpolatedStringHandler = new DefaultInterpolatedStringHandler(27, 1);
-                interpolatedStringHandler.AppendLiteral("Encrypting string: ");
-                interpolatedStringHandler.AppendFormatted(stringBuilder);
-                interpolatedStringHandler.AppendLiteral(" failed.");
-                throw new InvalidOperationException(interpolatedStringHandler.ToStringAndClear());
-            }
-            return "1" + strEncrypted;
-        }
-
+         
         public static IDictionary DecryptDictionary(string ciphertext) => DecryptDictionary(ciphertext, string.Empty);
 
         public static IDictionary DecryptDictionary(string ciphertext, string identifier)
@@ -990,13 +746,92 @@ namespace Schurko.Foundation.Crypto.Cryptography
             return Convert.ToBase64String(new HMACSHA1(_mKeys[keyOffset]).ComputeHash(bytes)).Substring(0, 16);
         }
 
+        private static readonly Encoding encoding = Encoding.UTF8;
+
+        public static string Encrypt(string plainText, string key)
+        {
+            try
+            {
+                RijndaelManaged aes = new RijndaelManaged();
+                aes.KeySize = 256;
+                aes.BlockSize = 128;
+                aes.Padding = PaddingMode.PKCS7;
+                aes.Mode = CipherMode.CBC;
+
+                aes.Key = encoding.GetBytes(key);
+                aes.GenerateIV();
+
+                ICryptoTransform AESEncrypt = aes.CreateEncryptor(aes.Key, aes.IV);
+                byte[] buffer = encoding.GetBytes(plainText);
+
+                string encryptedText = Convert.ToBase64String(AESEncrypt.TransformFinalBlock(buffer, 0, buffer.Length));
+
+                String mac = "";
+
+                mac = BitConverter.ToString(HmacSHA256(Convert.ToBase64String(aes.IV) + encryptedText, key)).Replace("-", "").ToLower();
+
+                var keyValues = new Dictionary<string, object>
+                {
+                    { "iv", Convert.ToBase64String(aes.IV) },
+                    { "value", encryptedText },
+                    { "mac", mac },
+                };
+
+                JavaScriptSerializer serializer = new JavaScriptSerializer();
+
+                return Convert.ToBase64String(encoding.GetBytes(serializer.Serialize(keyValues)));
+            }
+            catch (Exception e)
+            {
+                throw new Exception("Error encrypting: " + e.Message);
+            }
+        }
+
+        public static string Decrypt(string plainText, string key)
+        {
+            try
+            {
+                RijndaelManaged aes = new RijndaelManaged();
+                aes.KeySize = 256;
+                aes.BlockSize = 128;
+                aes.Padding = PaddingMode.PKCS7;
+                aes.Mode = CipherMode.CBC;
+                aes.Key = encoding.GetBytes(key);
+
+                // Base 64 decode
+                byte[] base64Decoded = Convert.FromBase64String(plainText);
+                string base64DecodedStr = encoding.GetString(base64Decoded);
+
+                // JSON Decode base64Str
+                JavaScriptSerializer serializer = new JavaScriptSerializer();
+                var payload = serializer.Deserialize<Dictionary<string, string>>(base64DecodedStr);
+
+                aes.IV = Convert.FromBase64String(payload["iv"]);
+
+                ICryptoTransform AESDecrypt = aes.CreateDecryptor(aes.Key, aes.IV);
+                byte[] buffer = Convert.FromBase64String(payload["value"]);
+
+                return encoding.GetString(AESDecrypt.TransformFinalBlock(buffer, 0, buffer.Length));
+            }
+            catch (Exception e)
+            {
+                throw new Exception("Error decrypting: " + e.Message);
+            }
+        }
+
+        static byte[] HmacSHA256(String data, String key)
+        {
+            using (HMACSHA256 hmac = new HMACSHA256(encoding.GetBytes(key)))
+            {
+                return hmac.ComputeHash(encoding.GetBytes(data));
+            }
+        }
+
         public static string EncryptString(string val) => EncryptString(val, string.Empty);
 
         public static string EncryptString(string val, string identifier)
         {
-            Hashtable dict = new Hashtable();
-            dict[string.Empty] = val;
-            return EncryptDictionary(dict, identifier);
+            return Encrypt(val, identifier);
         }
 
         public static string EncryptInt(int val) => EncryptString(val.ToString(CultureInfo.InvariantCulture), string.Empty);
@@ -1018,26 +853,7 @@ namespace Schurko.Foundation.Crypto.Cryptography
         public static int DecryptLong(string encryptedStr) => int.Parse(DecryptString(encryptedStr, string.Empty));
 
         public static int DecryptLong(string encryptedStr, string identifier) => int.Parse(DecryptString(encryptedStr, identifier));
-
-        public static RsaCryptoProvider GetRsaCryptoProvider(
-          string subjectName,
-          StoreName storeName = StoreName.My,
-          StoreLocation storeLocation = StoreLocation.LocalMachine)
-        {
-            X509Certificate2 certificateBySubjectName = CertificateManager.FindCertificateBySubjectName(subjectName, new StoreName?(storeName), storeLocation);
-            if (certificateBySubjectName == null)
-            {
-                DefaultInterpolatedStringHandler interpolatedStringHandler = new DefaultInterpolatedStringHandler(30, 3);
-                interpolatedStringHandler.AppendLiteral("Certificate ");
-                interpolatedStringHandler.AppendFormatted(subjectName);
-                interpolatedStringHandler.AppendLiteral(" not found in ");
-                interpolatedStringHandler.AppendFormatted(storeName);
-                interpolatedStringHandler.AppendLiteral(" on ");
-                interpolatedStringHandler.AppendFormatted(storeLocation);
-                throw new CryptoException(interpolatedStringHandler.ToStringAndClear());
-            }
-            return new RsaCryptoProvider(certificateBySubjectName);
-        }
+         
 
         public static bool Encrypt(string strToEncrypt, int keyOffset, out string strEncrypted)
         {

@@ -1,5 +1,5 @@
 ﻿
-using Microsoft.Extensions.Logging;
+ 
 using Schurko.Foundation.Logging;
 using System;
 using System.IO;
@@ -8,7 +8,7 @@ using System.Text;
 using System.Web;
 
 
-#nullable enable
+
 namespace Schurko.Foundation.Utilities
 {
   public static class CryptoManager

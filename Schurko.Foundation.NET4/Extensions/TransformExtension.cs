@@ -5,7 +5,7 @@ using System.Xml.XPath;
 using System.Xml.Xsl;
 
 
-#nullable enable
+
 namespace Schurko.Foundation.Extensions
 {
     public static class TransformExtension

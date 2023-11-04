@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 
 
-#nullable enable
+
 namespace Schurko.Foundation.Caching
 {
     public interface IQueryableCacheProvider

@@ -6,7 +6,7 @@ using System.Data.SqlClient;
 using System.Text;
 
 
-#nullable enable
+
 namespace Schurko.Foundation.Extensions
 {
     public static class SqlCommandExtensions

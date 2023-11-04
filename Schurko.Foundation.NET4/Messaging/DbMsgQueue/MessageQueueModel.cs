@@ -2,7 +2,7 @@
 using System;
 
 
-#nullable enable
+
 namespace Schurko.Foundation.Messaging.DbMsgQueue
 {
   public class MessageQueueModel : MessageQueueBase

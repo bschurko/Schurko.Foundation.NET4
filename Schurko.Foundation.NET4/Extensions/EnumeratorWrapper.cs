@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 
 
-#nullable enable
+
 namespace Schurko.Foundation.Extensions
 {
     public class EnumeratorWrapper<T> : IEnumerator<T>, IEnumerator, IDisposable

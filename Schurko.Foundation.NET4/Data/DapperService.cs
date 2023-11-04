@@ -8,8 +8,7 @@ using System.Linq;
 using System.Reflection;
 using System.Threading.Tasks;
 using Dapper;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.Logging;
+ 
 using Schurko.Foundation.Identity.Impersonation;
 using Schurko.Foundation.Logging;
 using Schurko.Foundation.Utilities;
@@ -59,8 +58,8 @@ namespace Schurko.Foundation.Data
             }
             else
             {
-
-                connectionString = StaticConfigurationManager.AppSetting.GetConnectionString(name ?? _connectionStringName) ?? _connectionStringValue;
+                connectionString = System.Configuration.ConfigurationManager.
+                    ConnectionStrings[name ?? _connectionStringName].ConnectionString;
             }
 
             if (string.IsNullOrWhiteSpace(connectionString))
