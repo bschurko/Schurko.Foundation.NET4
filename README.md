@@ -1,4 +1,4 @@
-# Schurko.Foundation
+# Schurko.Foundation.NET4 (.NET Framework 4.8 Version)
 A collection of helper, utility, extension and service classes.
 
 ## Caching
