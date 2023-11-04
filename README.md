@@ -21,10 +21,6 @@ Simplifies interaction with AppSetting.config.
 ## File IO Utility Classes
 Utility classes that extend the current .NET file/IO classes for both directories and files.
 
-## Array and CVS Utility
-Helper classes where you can parse CVS files and manage them.
-Additionally there is an array utility class for extending array functionality.
-
 ## CryptoManager 
 A simple class to encrypt and decrypt data using AES encryption.
 
@@ -45,7 +41,7 @@ A class for retriving basic information about a computers CPU and drives.
 A powerful class full of extensions and utilities for the string object.
 
 ## Logger
-A simple class for creating and retriving the .NET core Logger class.
+A simple class for creating and retriving the .NET Frameworks Trace Logger.
 
 ## Network Util and Sockets wrapper class
 A powerful number of classes that simplify the creation of a socket based server and a socket client for communicating with a socket server.
@@ -56,7 +52,7 @@ Various design pattern wrapper classes. For example, the IRepository/Repository 
 The factory class can be used by classes that implement a factory pattern. In addition, a couple more design pattern classes are available to help promote good coding.
 Design Pattern Classes: Composite, Factory, Repository NodeT, Singleton.
 
-## Thread-Safe ATOMIC Queue, internal processor and backend Repository
+## Thread-Safe ATOMIC Queue, with internal task processor and backend Repository
 A couple of classes and interfaces that provide a Thread-Safe Queue data structure that allows a custom backend repository.
 In addition, an internal processor wrapper class allows jobs that are submitted to the queue to invoke custom Actions/Events when being dequeued or enqueued.
 
@@ -73,22 +69,15 @@ Additionally, the XMLUtil class helps with interaction with an XML file.
 ## Producer and Consumer Design Pattern
 An Administrator and worker/IJob class that provides a thread-safe ATOMIC design pattern for submitting jobs that get processed in a parallel fashion.
 Simply inherit from the Administrator.cs and override the a few methods for submitting and processing jobs, that get passed into the queue.
-
-## Microsoft Identity Framework Wrapper Classes
-Wrapper classes and extensions for the core classes used in the MS Identity Framework.
-The IdentityUser class has a abstract AppUserBase that gets implemented by AppUser.cs.
-An implementation of the core UserStore.cs using the IdentityDbContext.
-Basic extensions for claims and identity base classes.
-
+  
 ## Security Impersonation and Credential Provider
 Wrapper class for simply applying impersonation to allow security levels to be raised by whatever user provided that you implement.
-
-## .NET Core Dependency Injection Wrapper Class
-Simple access to the IServiceCollection class via an Action delegate; allowing you to register classes into the dependency container.
-In addition, you can retrieve registered dependencies via the GetService<T> container method.
-
+ 
 ## Managed Extensibility Framework (MEF) Dependency Injection
-n the Managed Extensibility Framework (MEF), a programming model is a particular method of defining the set of conceptual objects on which MEF operates. These conceptual objects include parts, imports, and exports. MEF uses these objects, but does not specify how they should be represented
+n the Managed Extensibility Framework (MEF), a programming model is a particular method of defining 
+the set of conceptual objects on which MEF operates. These conceptual objects include parts, imports, 
+and exports. MEF uses these objects, but does not specify how they should be represented. 
+Essentially, you add attribute tags to your class/interface and then you can load the interface/class as an object of type T.
  
 ## Message Queue Service
 A message queue service that uses a backend repository of a MS SQL tables and stored procedures.
