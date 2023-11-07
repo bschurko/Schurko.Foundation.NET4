@@ -4,15 +4,16 @@ using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace Schurko.Foundation.Utilities
 {
     public static class FileUtil
     {
-
+        
         public static bool CreateFile(string path, string content = null)
-        {
+        { 
             try
             {
                 if (content != null)

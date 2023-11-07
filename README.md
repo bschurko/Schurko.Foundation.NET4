@@ -12,11 +12,17 @@ Classes to encrypt data or objects. Additionally there are classes to manage cer
 A dapper helper class for executing stored procedures and raw SQL code.
 Plenty of extensions that wrap the core dapper library into one easy service.
 
+## Database Logger
+A simple logger class that is wired to a database that uses a stored procedure to insert logs into a database table.
+
 ## Hash Util
 Utility class for hashing data.
 
 ## Settings and Configuration
 Simplifies interaction with AppSetting.config.
+
+## Database Logger
+A simple logger class that is wired to a database that uses a stored procedure to insert logs into a database table.
 
 ## File IO Utility Classes
 Utility classes that extend the current .NET file/IO classes for both directories and files.

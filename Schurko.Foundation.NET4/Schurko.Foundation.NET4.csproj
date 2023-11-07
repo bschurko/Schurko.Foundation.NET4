@@ -180,6 +180,7 @@
     <Compile Include="IoC\MEF\DependencyInjector.cs" />
     <Compile Include="IoC\MEF\Extensions.cs" />
     <Compile Include="IoC\MEF\ResolveEntityException.cs" />
+    <Compile Include="Logging\DbLogger.cs" />
     <Compile Include="Logging\Logger.cs" />
     <Compile Include="Messaging\DbMsgQueue\IMessageQueuePoolService.cs" />
     <Compile Include="Messaging\DbMsgQueue\MessageQueueBase.cs" />

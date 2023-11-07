@@ -129,6 +129,7 @@
     <Compile Include="Interfaces\ISpaceship.cs" />
     <Compile Include="Interfaces\IStringProcessor.cs" />
     <Compile Include="Interfaces\IVehicle.cs" />
+    <Compile Include="Logger\DbLoggerTests.cs" />
     <Compile Include="Logger\LoggerTests.cs" />
     <Compile Include="MEF\AutomaticResolverTests.cs" />
     <Compile Include="MEF\DependencyInjectorResolveTests.cs" />

@@ -10,6 +10,8 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Assets", "Assets", "{C531C10A-6BE4-4181-8A27-9A397B9F0F47}"
 	ProjectSection(SolutionItems) = preProject
 		Schurko.Foundation.NET4\Assets\InMemoryMessageQueue.sql = Schurko.Foundation.NET4\Assets\InMemoryMessageQueue.sql
+		Schurko.Foundation.NET4\Assets\LoggerTable.SQL = Schurko.Foundation.NET4\Assets\LoggerTable.SQL
+		Schurko.Foundation.NET4\Assets\spCreateLog.SQL = Schurko.Foundation.NET4\Assets\spCreateLog.SQL
 	EndProjectSection
 EndProject
 Global
